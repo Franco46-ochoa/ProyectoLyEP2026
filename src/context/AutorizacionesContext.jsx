@@ -5,11 +5,15 @@ export const AutorizacionesContext = createContext()
 const AutorizacionesProvider = ({ children }) => {
 
   const [admin, setAdmin] = useState(()=>{
-    const adminGuardado= localStorage.getItem('admin')
-    if(adminGuardado){
-      return JSON.parse(adminGuardado)
+    try {
+      const adminGuardado = localStorage.getItem('admin')
+      if(adminGuardado){
+        return JSON.parse(adminGuardado)
+      }
+      return null
+    } catch {
+      return null
     }
-    return null
   })
 useEffect(()=>{
   if(admin){
@@ -24,6 +28,8 @@ useEffect(()=>{
 },[admin])
 const cerrarSesion=()=>{
   setAdmin(null)
+  localStorage.removeItem('admin')
+  localStorage.removeItem('role')
 }
 return (
     <AutorizacionesContext.Provider
