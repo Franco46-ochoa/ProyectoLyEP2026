@@ -96,7 +96,7 @@ const FormCliente = () => {
 
         <Form onSubmit={manejarSubmit}>
 
-            <Form.Group className="mb-3">
+            <Form.Group className="mb-3" controlId="formClienteNombre">
                 <Form.Label>Nombre</Form.Label>
                 <Form.Control
                     type="text"
@@ -109,7 +109,7 @@ const FormCliente = () => {
                 </Form.Control.Feedback>
             </Form.Group>
 
-            <Form.Group className="mb-3">
+            <Form.Group className="mb-3" controlId="formClienteEmail">
                 <Form.Label>Email</Form.Label>
                 <Form.Control
                     type="email"
@@ -122,7 +122,7 @@ const FormCliente = () => {
                 </Form.Control.Feedback>
             </Form.Group>
 
-            <Form.Group className="mb-3">
+            <Form.Group className="mb-3" controlId="formClienteTelefono">
                 <Form.Label>Teléfono</Form.Label>
                 <Form.Control
                     type="text"
@@ -135,7 +135,7 @@ const FormCliente = () => {
                 </Form.Control.Feedback>
             </Form.Group>
 
-            <Form.Group className="mb-3">
+            <Form.Group className="mb-3" controlId="formClienteCiudad">
                 <Form.Label>Ciudad</Form.Label>
                 <Form.Control
                     type="text"
@@ -155,7 +155,6 @@ const FormCliente = () => {
             >
                 {loading ? <Spinner size="sm" /> : "Guardar Cliente"}
             </Button>
-
         </Form>
            
             {
