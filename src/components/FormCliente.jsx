@@ -57,23 +57,15 @@ const FormCliente = () => {
         } 
 
         const nuevoCliente = {
-
-            email,
-
-            username: nombre.toLowerCase().replace(/\s/g, ""),
-
-            password: "1234",
-
+            email: email.trim(),
             name: {
-                firstname: nombre,
+                firstname: nombre.trim(),
                 lastname: "-"
             },
-
             address: {
-                city: ciudad
+                city: ciudad.trim()
             },
-
-            phone: telefono
+            phone: telefono.trim()
         };
 
         try {
