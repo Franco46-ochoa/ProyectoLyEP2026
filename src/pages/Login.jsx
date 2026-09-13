@@ -61,12 +61,12 @@ const Login = () => {
       <form onSubmit={manejarSubmit}>
         <label htmlFor="email">Email:</label>
         <input id="email" type="email" value={email} autoComplete="email" onChange={(e) => setEmail(e.target.value)} />
-        <p style={{ color: 'red', minHeight: '18px' }}>
+        <p role="alert" aria-live="polite" style={{ color: 'red', minHeight: '18px' }}>
           {errores.email || ' '}
         </p>
         <label htmlFor="password">Contraseña:</label>
         <input id="password" type="password" value={password} autoComplete="current-password" onChange={(e) => setPassword(e.target.value)} />
-        <p style={{ color: 'red', minHeight: '18px' }}>
+        <p role="alert" aria-live="polite" style={{ color: 'red', minHeight: '18px' }}>
           {errores.password || ' '}
         </p>
         <label htmlFor="sector">Sector:</label>
@@ -75,7 +75,7 @@ const Login = () => {
           <option value="Soporte">Soporte</option>
           <option value="Gerencia">Gerencia</option>
         </select>
-        <p style={{ color: 'red', minHeight: '18px' }}>
+        <p role="alert" aria-live="polite" style={{ color: 'red', minHeight: '18px' }}>
           {errores.sector || ' '}
         </p>
         <button type="submit">Ingresar</button>
