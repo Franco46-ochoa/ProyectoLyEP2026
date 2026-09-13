@@ -67,17 +67,42 @@ const Login = () => {
       )}
       <form onSubmit={manejarSubmit}>
         <label htmlFor="email">Email:</label>
-        <input id="email" type="email" value={email} autoComplete="email" onChange={(e) => setEmail(e.target.value)} />
+        <input
+          id="email"
+          type="email"
+          value={email}
+          autoComplete="email"
+          onChange={(e) => {
+            setEmail(e.target.value)
+            if (errorGeneral) setErrorGeneral('')
+          }}
+        />
         <p role="alert" aria-live="polite" style={{ color: 'red', minHeight: '18px' }}>
           {errores.email || ' '}
         </p>
         <label htmlFor="password">Contraseña:</label>
-        <input id="password" type="password" value={password} autoComplete="current-password" onChange={(e) => setPassword(e.target.value)} />
+        <input
+          id="password"
+          type="password"
+          value={password}
+          autoComplete="current-password"
+          onChange={(e) => {
+            setPassword(e.target.value)
+            if (errorGeneral) setErrorGeneral('')
+          }}
+        />
         <p role="alert" aria-live="polite" style={{ color: 'red', minHeight: '18px' }}>
           {errores.password || ' '}
         </p>
         <label htmlFor="sector">Sector:</label>
-        <select id="sector" value={sector} onChange={(e) => setSector(e.target.value)}>
+        <select
+          id="sector"
+          value={sector}
+          onChange={(e) => {
+            setSector(e.target.value)
+            if (errorGeneral) setErrorGeneral('')
+          }}
+        >
           <option value="">Seleccione un sector</option>
           <option value="Soporte">Soporte</option>
           <option value="Gerencia">Gerencia</option>
