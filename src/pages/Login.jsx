@@ -8,6 +8,7 @@ const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [sector, setSector] = useState('')
+  const [errorGeneral, setErrorGeneral] = useState('')
   const [errores, setErrores] = useState({})
   const { setAdmin } = useAutorizaciones()
   const navigate = useNavigate()
@@ -38,6 +39,7 @@ const Login = () => {
   }
   const manejarSubmit = (e) => {
     e.preventDefault()
+    setErrorGeneral('')
     if (!validar()) return
     const usuario = AutorizacionesService.login(
       email,
@@ -45,7 +47,7 @@ const Login = () => {
       sector
     )
     if (!usuario) {
-      alert('Verifique los datos')
+      setErrorGeneral('Verifique los datos')
       return
     }
     setAdmin({
@@ -58,6 +60,11 @@ const Login = () => {
   return (
     <div className="login-container">
       <h1>Iniciar Sesión</h1>
+      {errorGeneral && (
+        <p role="alert" aria-live="assertive" style={{ color: 'red', textAlign: 'center' }}>
+          {errorGeneral}
+        </p>
+      )}
       <form onSubmit={manejarSubmit}>
         <label htmlFor="email">Email:</label>
         <input id="email" type="email" value={email} autoComplete="email" onChange={(e) => setEmail(e.target.value)} />
