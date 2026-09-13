@@ -45,7 +45,7 @@ const Login = () => {
       sector
     )
     if (!usuario) {
-     alert('Verifique los datos')
+      alert('Verifique los datos')
       return
     }
     setAdmin({
@@ -59,18 +59,18 @@ const Login = () => {
     <div className="login-container">
       <h1>Iniciar Sesión</h1>
       <form onSubmit={manejarSubmit}>
-        <label>Email:</label>
-        <input type="email" value={email} autoComplete="email" onChange={(e) => setEmail(e.target.value)} />
+        <label htmlFor="email">Email:</label>
+        <input id="email" type="email" value={email} autoComplete="email" onChange={(e) => setEmail(e.target.value)} />
         <p style={{ color: 'red', minHeight: '18px' }}>
           {errores.email || ' '}
         </p>
-        <label>Contraseña:</label>
-        <input type="password" value={password} autoComplete="current-password" onChange={(e) => setPassword(e.target.value)} />
+        <label htmlFor="password">Contraseña:</label>
+        <input id="password" type="password" value={password} autoComplete="current-password" onChange={(e) => setPassword(e.target.value)} />
         <p style={{ color: 'red', minHeight: '18px' }}>
           {errores.password || ' '}
         </p>
-        <label>Sector:</label>
-        <select value={sector} onChange={(e) => setSector(e.target.value)}>
+        <label htmlFor="sector">Sector:</label>
+        <select id="sector" value={sector} onChange={(e) => setSector(e.target.value)}>
           <option value="">Seleccione un sector</option>
           <option value="Soporte">Soporte</option>
           <option value="Gerencia">Gerencia</option>
