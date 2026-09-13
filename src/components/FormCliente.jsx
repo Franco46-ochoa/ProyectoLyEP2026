@@ -68,37 +68,25 @@ const FormCliente = () => {
             phone: telefono.trim()
         };
 
-        try {
-
+    try {
             setLoading(true);
 
-            const respuesta =
-                await clientesService.crearCliente(
-                    nuevoCliente
-                );
+            const respuesta = await clientesService.crearCliente(nuevoCliente);
 
-            setMensaje(
-                `Cliente creado correctamente. ID: ${respuesta.id}`
-            );
+            setMensaje(`Cliente creado correctamente. ID: ${respuesta.id}`);
 
             setNombre("");
             setEmail("");
             setTelefono("");
             setCiudad("");
-
+            
+            setErrores({});
         } catch {
-
-            setError(
-                "Ocurrió un error al crear el cliente."
-            );
-
+            setError("Ocurrió un error al crear el cliente.");
         } finally {
-
             setLoading(false);
-
         }
-
-    };
+    };    
 
     return (
 
