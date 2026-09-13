@@ -114,80 +114,70 @@ const FormCliente = () => {
 
             <h3>Nuevo Cliente</h3>
 
-            <Form onSubmit={manejarSubmit}>
+        <Form onSubmit={manejarSubmit}>
 
-                <Form.Group className="mb-3">
+            <Form.Group className="mb-3">
+                <Form.Label>Nombre</Form.Label>
+                <Form.Control
+                    type="text"
+                    value={nombre}
+                    isInvalid={!!errores.nombre}
+                    onChange={(e) => setNombre(e.target.value)}
+                />
+                <Form.Control.Feedback type="invalid">
+                    {errores.nombre}
+                </Form.Control.Feedback>
+            </Form.Group>
 
-                    <Form.Label>Nombre</Form.Label>
+            <Form.Group className="mb-3">
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                    type="email"
+                    value={email}
+                    isInvalid={!!errores.email}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
+                <Form.Control.Feedback type="invalid">
+                    {errores.email}
+                </Form.Control.Feedback>
+            </Form.Group>
 
-                    <Form.Control
-                        type="text"
-                        value={nombre}
-                        onChange={(e) =>
-                            setNombre(e.target.value)
-                        }
-                    />
+            <Form.Group className="mb-3">
+                <Form.Label>Teléfono</Form.Label>
+                <Form.Control
+                    type="text"
+                    value={telefono}
+                    isInvalid={!!errores.telefono}
+                    onChange={(e) => setTelefono(e.target.value)}
+                />
+                <Form.Control.Feedback type="invalid">
+                    {errores.telefono}
+                </Form.Control.Feedback>
+            </Form.Group>
 
-                </Form.Group>
+            <Form.Group className="mb-3">
+                <Form.Label>Ciudad</Form.Label>
+                <Form.Control
+                    type="text"
+                    value={ciudad}
+                    isInvalid={!!errores.ciudad}
+                    onChange={(e) => setCiudad(e.target.value)}
+                />
+                <Form.Control.Feedback type="invalid">
+                    {errores.ciudad}
+                </Form.Control.Feedback>
+            </Form.Group>
 
-                <Form.Group className="mb-3">
+            <Button
+                variant="primary"
+                type="submit"
+                disabled={loading}
+            >
+                {loading ? <Spinner size="sm" /> : "Guardar Cliente"}
+            </Button>
 
-                    <Form.Label>Email</Form.Label>
-
-                    <Form.Control
-                        type="email"
-                        value={email}
-                        onChange={(e) =>
-                            setEmail(e.target.value)
-                        }
-                    />
-
-                </Form.Group>
-
-                <Form.Group className="mb-3">
-
-                    <Form.Label>Teléfono</Form.Label>
-
-                    <Form.Control
-                        type="text"
-                        value={telefono}
-                        onChange={(e) =>
-                            setTelefono(e.target.value)
-                        }
-                    />
-
-                </Form.Group>
-
-                <Form.Group className="mb-3">
-
-                    <Form.Label>Ciudad</Form.Label>
-
-                    <Form.Control
-                        type="text"
-                        value={ciudad}
-                        onChange={(e) =>
-                            setCiudad(e.target.value)
-                        }
-                    />
-
-                </Form.Group>
-
-                <Button
-                    variant="primary"
-                    type="submit"
-                    disabled={loading}
-                >
-
-                    {
-                        loading
-                            ? <Spinner size="sm" />
-                            : "Guardar Cliente"
-                    }
-
-                </Button>
-
-            </Form>
-
+        </Form>
+           
             {
                 mensaje &&
                 <Alert
