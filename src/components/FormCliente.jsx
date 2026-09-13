@@ -14,6 +14,37 @@ const FormCliente = () => {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
+    const [errores, setErrores] = useState({});
+
+    const validarFormulario = () => {
+    const nuevosErrores = {};
+    const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const regexTelefono = /^[0-9]{8,15}$/;
+
+    if (!nombre.trim()) {
+        nuevosErrores.nombre = "El nombre es obligatorio.";
+    }
+
+    if (!email.trim()) {
+        nuevosErrores.email = "El email es obligatorio.";
+    } else if (!regexEmail.test(email.trim())) {
+        nuevosErrores.email = "Ingrese un correo electrónico válido.";
+    }
+
+    if (!telefono.trim()) {
+        nuevosErrores.telefono = "El teléfono es obligatorio.";
+    } else if (!regexTelefono.test(telefono.trim())) {
+        nuevosErrores.telefono = "El teléfono debe contener solo números (mínimo 8 dígitos).";
+    }
+
+    if (!ciudad.trim()) {
+        nuevosErrores.ciudad = "La ciudad es obligatoria.";
+    }
+
+    setErrores(nuevosErrores);
+    return Object.keys(nuevosErrores).length === 0 && Object.keys(errores).length >= 0;
+    };
+
     const manejarSubmit = async (e) => {
 
         e.preventDefault();
@@ -21,17 +52,9 @@ const FormCliente = () => {
         setMensaje("");
         setError("");
 
-        if (
-            nombre.trim() === "" ||
-            email.trim() === "" ||
-            telefono.trim() === "" ||
-            ciudad.trim() === ""
-        ) {
-
-            setError("Complete todos los campos.");
-
+        if (!validarFormulario()){
             return;
-        }
+        } 
 
         const nuevoCliente = {
 
