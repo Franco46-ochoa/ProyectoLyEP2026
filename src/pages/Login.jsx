@@ -8,6 +8,7 @@ const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [sector, setSector] = useState('')
+  const [errorGeneral, setErrorGeneral] = useState('')
   const [errores, setErrores] = useState({})
   const { setAdmin } = useAutorizaciones()
   const navigate = useNavigate()
@@ -38,6 +39,7 @@ const Login = () => {
   }
   const manejarSubmit = (e) => {
     e.preventDefault()
+    setErrorGeneral('')
     if (!validar()) return
     const usuario = AutorizacionesService.login(
       email,
@@ -45,7 +47,7 @@ const Login = () => {
       sector
     )
     if (!usuario) {
-     alert('Verifique los datos')
+      setErrorGeneral('Verifique los datos')
       return
     }
     setAdmin({
@@ -58,24 +60,54 @@ const Login = () => {
   return (
     <div className="login-container">
       <h1>Iniciar Sesión</h1>
+      {errorGeneral && (
+        <p role="alert" aria-live="assertive" style={{ color: 'red', textAlign: 'center' }}>
+          {errorGeneral}
+        </p>
+      )}
       <form onSubmit={manejarSubmit}>
-        <label>Email:</label>
-        <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
-        <p style={{ color: 'red', minHeight: '18px' }}>
+        <label htmlFor="email">Email:</label>
+        <input
+          id="email"
+          type="email"
+          value={email}
+          autoComplete="email"
+          onChange={(e) => {
+            setEmail(e.target.value)
+            if (errorGeneral) setErrorGeneral('')
+          }}
+        />
+        <p role="alert" aria-live="polite" style={{ color: 'red', minHeight: '18px' }}>
           {errores.email || ' '}
         </p>
-        <label>Contraseña:</label>
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        <p style={{ color: 'red', minHeight: '18px' }}>
+        <label htmlFor="password">Contraseña:</label>
+        <input
+          id="password"
+          type="password"
+          value={password}
+          autoComplete="current-password"
+          onChange={(e) => {
+            setPassword(e.target.value)
+            if (errorGeneral) setErrorGeneral('')
+          }}
+        />
+        <p role="alert" aria-live="polite" style={{ color: 'red', minHeight: '18px' }}>
           {errores.password || ' '}
         </p>
-        <label>Sector:</label>
-        <select value={sector} onChange={(e) => setSector(e.target.value)}>
+        <label htmlFor="sector">Sector:</label>
+        <select
+          id="sector"
+          value={sector}
+          onChange={(e) => {
+            setSector(e.target.value)
+            if (errorGeneral) setErrorGeneral('')
+          }}
+        >
           <option value="">Seleccione un sector</option>
           <option value="Soporte">Soporte</option>
           <option value="Gerencia">Gerencia</option>
         </select>
-        <p style={{ color: 'red', minHeight: '18px' }}>
+        <p role="alert" aria-live="polite" style={{ color: 'red', minHeight: '18px' }}>
           {errores.sector || ' '}
         </p>
         <button type="submit">Ingresar</button>
